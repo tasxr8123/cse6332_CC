@@ -21,7 +21,7 @@ def user():
 
     return render_template('user.html',user=user,state=state)
 """
-@app.route('/user/', methods = ["POST"])
+@app.route('/user', methods = ["POST"])
 def user():
     name = request.form["name"]
     df = pd.read_csv("people.csv")
