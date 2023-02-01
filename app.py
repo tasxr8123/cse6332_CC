@@ -4,6 +4,9 @@ from flask import request
 from PIL import Image
 import csv
 import pandas as pd
+from PIL import Image
+import base64
+import io
 
 
 app = Flask(__name__)
@@ -34,13 +37,17 @@ def user():
     
     if name in pdict:
         photo_name = pdict[name]
+        #file=open(photo_name,'rb').read()
+        #file=base64.b64encode(file)
+        #df1 = pd.DataFrame()
+        #df1['photo_name']=[file]
         image = Image.open(photo_name)
-        image.show()
+        data=io.BytesIO()
+        image.save(data,"JPEG")
+        encoded_img_data = base64.b64encode(data.getvalue())
+        #image.show()
     else:
         exit
-    return render_template('user.html',user=name,state=state)
-
-
-      
+    return render_template('user.html',user=name,state=state,photo_name=encoded_img_data.decode('utf-8'))      
 if __name__ == "__main__":
    app.run(debug = True)
