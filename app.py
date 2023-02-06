@@ -19,15 +19,7 @@ from IPython.display import HTML
 app = Flask(__name__)
 app = Flask(__name__, static_folder='static', static_url_path='')
 
-app.config.from_pyfile('config.py')
-account = app.config['ACCOUNT_NAME']   # Azure account name
-key = app.config['ACCOUNT_KEY']      # Azure Storage account access key  
-connect_str = app.config['CONNECTION_STRING']
-container = app.config['CONTAINER'] # Container name
-allowed_ext = app.config['ALLOWED_EXTENSIONS'] # List of accepted extensions
 
-
-blob_service_client = BlobServiceClient.from_connection_string(connect_str)
 
 #LAUNCH WELCOME PAGE
 @app.route('/', methods = ["GET","POST"])
