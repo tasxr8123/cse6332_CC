@@ -21,17 +21,14 @@ app = Flask(__name__, static_folder='static', static_url_path='')
 
 
 
-#LAUNCH WELCOME PAGE
 @app.route('/', methods = ["GET","POST"])
 def hello_world():
     return render_template("welcomeassgn1.html")
 
-#GET SALARIES
 
 @app.route('/get_salary', methods = ["GET", "POST"])
 def salary_input():
     return render_template('get_salary.html')
-#DISPLAY SALARIES
 
 @app.route('/user', methods = ["POST"])
 def user():
