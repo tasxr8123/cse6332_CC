@@ -1,0 +1,14 @@
+<html>
+    <body>
+        <form>
+            <p>
+                <label> Key words for {{name}} have been updated</label>
+                {% for table in tables %}    
+                    {{ table|safe }}
+                    {% endfor %}
+                        
+                {{msg}}
+            </p>
+        </form>
+    </body>
+</html>
