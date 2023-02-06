@@ -90,7 +90,7 @@ def salary():
             enc_img = base64.b64encode(data.getvalue())
             return render_template('salary.html', tables=[df_op.to_html()], titles=['Name','Salary','Picture'],photo_list = enc_img.decode('UTF-8'))
 
-
+""""
 @app.route('/upload', methods = ["GET","POST"])
 def upload():
     if request.method == 'POST':
@@ -131,9 +131,7 @@ def update():
         msg = kw
         df.to_csv ("people.csv", index = None, header=True)
     return render_template("update.html",name=name,tables = [df.to_html()],msg=msg)
-
-
-
+"""
 if __name__ == "__main__":
     app.run(debug = True)
 
