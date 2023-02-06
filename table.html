@@ -1,0 +1,10 @@
+<html>
+    <h1> Data has been downloaded from the blob</h1>
+    <div> align="center" 
+    <table>
+        {% for table in tables%}
+        {{table|safe}}
+        {% endfor%}
+    </table>
+</div>
+</html>
