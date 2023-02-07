@@ -107,7 +107,6 @@ def upload():
                     pass
         #os.remove(filename)
     return render_template("index.html")
-
 @app.route('/keywords', methods = ["GET", "POST"])
 def get_keywords():
     return render_template('keywords.html')
