@@ -50,7 +50,8 @@ def user():
             image.save(data,"JPEG")
             encoded_img_data = base64.b64encode(data.getvalue())
             return render_template('user.html',user=name,state=state,photo_name=encoded_img_data.decode('utf-8')) 
-        return render_template('not_found.html')
+        return render_template('not_found.html'
+        
 if __name__ == "__main__":
     app.run(debug = True)
 
