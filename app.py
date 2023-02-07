@@ -132,4 +132,4 @@ def update():
         df.to_csv ("people.csv", index = None, header=True)
     return render_template("update.html",name=name,tables = [df.to_html()],msg=msg)
 if __name__ == "__main__":
- app.run(host='0.0.0.0', port=8000)
+    app.run(host='0.0.0.0', port=8000)
