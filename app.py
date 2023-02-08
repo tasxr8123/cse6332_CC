@@ -94,9 +94,9 @@ def nameinc():
 def picture():
 
     
-    df['picture'].fillna('No_picture.jpg') 
     df = pd.read_csv("data-1.csv",on_bad_lines='skip')
-    df.loc[df.picture == ' ', 'picture'] = 'No Image'
+    df.loc[df.picture == ' ', 'picture'] = 'No_Picture.jpg'
+    df.loc[df.picture == 'Nan', 'picture'] = 'No_Picture.jpg'
     df.to_csv ("data-1.csv", index = None, header=True)
     pdict = zip(df.name,df.picture)
     pdict=dict(pdict)
