@@ -44,11 +44,11 @@ def salary_input():
 @app.route('/salary', methods = ["POST"])
 def salary():
     df_op = pd.DataFrame()
-    sal = request.form["sal"]
-    df = pd.read_csv("data-1.csv")
+    sal = request.form["sal"].isdigit()
+    df = pd.read_csv("data-1.csv", converters={'income': int})
     df['income'] = df['income'].fillna(0)
-    df['income'] = pd.to_numeric(df['income'])
-    df_op = df[['name','income','comments']] [(df['income'] > 0) & (df['income'] < sal)]
+    #df['income'] = pd.to_numeric(df['income'])
+    df_op = df.loc[(df['income'] >= 0) & (df['income'] <= sal)]
     return render_template('salary.html',tables = [df_op.to_html()], titles=['name','income','comments'])
 
 @app.route('/nameinc', methods = ["GET", "POST"])
@@ -66,6 +66,22 @@ def nameinc():
     df.loc[df.name == name, ['name','income', 'comments']] = name,inc, comments
     df.to_csv ("data-1.csv", index = None, header=True)
     return render_template('update.html',name=name,tables=[df.to_html()],titles=['name','income','comments'],comments=comments)
+
+@app.route('/picture', methods = ["GET","POST"])
+def picture():
+    df = pd.read_csv("data-1.csv",on_bad_lines='skip')
+    photo_list = ['m-1.jpg','b-1.jpg']
+    N = 'dar.jpg'
+    df.loc[df.picture == ' ', ['picture']] = N
+    for p in photo_list:   
+            image = Image.open(p)
+            data=io.BytesIO()
+            image.save(data,"JPEG")
+            enc_img = base64.b64encode(data.getvalue())
+            #df_op['Picture_new']=enc_img.decode('UTF-8')
+            enc_img = base64.b64encode(data.getvalue())
+            
+            return render_template('picture.html', photo_list = enc_img.decode('UTF-8'))
 
 
 if __name__ == "__main__":
